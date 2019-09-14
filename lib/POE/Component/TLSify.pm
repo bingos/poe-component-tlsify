@@ -215,6 +215,12 @@ is not done yet. The socket is nonblocking, so you will have to wait a little bi
 
 =head1 NOTES
 
+=head2 Certificate Verification
+
+L<POE::Component::SSLify> did not do certificate validation and verification. L<IO::Socket::SSL> does by default.
+It would be useful to make yourself aware of this default behaviour and check out the documentation for the
+following options C<SSL_verify_mode>, C<SSL_verify_callback> and C<SSL_ocsp_mode>.
+
 =head2 Socket methods doesn't work
 
 The new socket this module gives you actually is C<tied> socket magic, so you cannot do stuff like
