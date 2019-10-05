@@ -67,6 +67,7 @@ POE::Component::Server::TCP->new
 
 			## At this point, connection MUST be encrypted.
 			my $cipher = TLSify_GetCipher($heap->{client}->get_output_handle);
+      ok(1, 'SERVER: SSLVersion: '. TLSify_GetSocket( $heap->{client}->get_output_handle )->get_sslversion() );
 			ok($cipher ne '(NONE)', "SERVER: TLSify_GetCipher: $cipher");
 
 			$heap->{client}->put("pong");
