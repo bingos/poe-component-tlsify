@@ -33,7 +33,7 @@ sub TIEHANDLE {
 sub _check_status {
   my $self = shift;
   my $method = $self->{method};
-  unless ( $self->{socket}->$method ) {
+  unless ( eval { $self->{socket}->$method } ) {
     if ( $! != EAGAIN and $! != EWOULDBLOCK ) {
       if ( defined $self->{on_connect} ) {
         my $errval = IO::Socket::SSL->errstr;
